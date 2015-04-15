@@ -6,6 +6,8 @@
         <pathsSet class="linked-hash-set">
           <string>index.jsp</string>
           <string>WEB-INF/sun-web.xml</string>
+          <string>WEB-INF/classes/DES/Decryption.class</string>
+          <string>WEB-INF/classes/DES/Encryption.class</string>
         </pathsSet>
       </path-set>
     </entry>
