@@ -13,6 +13,11 @@ public class EquationSolver {
         solutionMatrix = solution;
     }
 
+    public void reset() {
+        equationMatrix = new double[1][1];
+        solutionMatrix = new double[1];
+    }
+
     public double[] solve() {
         int n = solutionMatrix.length;
         for(int k = 0; k < n; k++) {
