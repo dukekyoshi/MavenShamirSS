@@ -157,6 +157,12 @@ public class Decryption {
         sBox.add(s8);
     }
 
+    public void reset() {
+        key = "";
+        roundKey = new String[16];
+        cipher = "";
+    }
+
     public void setCipher(String c) {
         String bin = "";
         for(int i = 0; i < c.length(); i++) {
@@ -280,5 +286,14 @@ public class Decryption {
             res += xor;
         }
         return res;
+    }
+
+    public String binToStr(String bin) {
+        String text = "";
+        String[] temp = bin.split("(?<=\\G.{8})");
+        for(int i = 0; i < temp.length; i++) {
+            text += (char)Integer.parseInt(temp[i], 2);
+        }
+        return text;
     }
 }

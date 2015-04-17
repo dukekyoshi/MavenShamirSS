@@ -34,7 +34,7 @@
             String[] hashValue = new String[answers.length];
             Sha512 sha = new Sha512();
             for(int i = 0; i < hashValue.length; i++) {
-                String message = questions[i] + "" + answers[i] + "" + salt;
+                String message = questions[i] + answers[i] + salt;
                 sha.setMessage(message);
                 sha.createDigest();
                 hashValue[i] = sha.getDigest();
@@ -43,23 +43,29 @@
 
             int share = answers.length;
             int k = Integer.parseInt(minQ);
-            int secret = (int)(Math.random()*100)+10;
-
-            SecretSharing ss = new SecretSharing(secret);
-            ss.split(share, k);
-
-            int[] function = ss.getFunction();
-            int[] shares = ss.getFx();
-
+            
             Encryption e = new Encryption();
-            String[] encrypted = new String[hashValue.length];
-            for(int i = 1; i < shares.length; i++) {
-                e.setMessage(shares[i]+"");
-                e.setKey(hashValue[i-1]);
-                e.initialize();
-                e.encrypt();
-                encrypted[i-1] = e.getCipherText();
-                e.reset();
+            String[] encrypted = new String[password.length()*share];
+
+            int secret = 0;
+            int encIdx = 0;
+            for(int i = 0; i < password.length(); i++) {
+                secret = (int)(password.charAt(i));
+                SecretSharing ss = new SecretSharing(secret);
+                ss.split(share, k);
+
+                int[] function = ss.getFunction();
+                int[] shares = ss.getFx();
+                
+                for(int j = 1; j < shares.length; j++) {
+                    e.setMessage(shares[j]+"");
+                    e.setKey(hashValue[j-1]);
+                    e.initialize();
+                    e.encrypt();
+                    encrypted[encIdx] = e.getCipherText();
+                    encIdx++;
+                    e.reset();
+                }
             }
 
             //save questions
@@ -78,9 +84,9 @@
             dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_answers.txt");
             dw.write(writeToFile);
 
-            //save salt
-            writeToFile = salt+"";
-            dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_salt.txt");
+            //save salt and min question
+            writeToFile = salt + "\r\n" + k;
+            dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_others.txt");
             dw.write(writeToFile);
 
             response.sendRedirect("index.jsp");
