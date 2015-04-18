@@ -44,7 +44,8 @@
                             </div>
                             <%
                                 if(questions != null) {
-                                    DataReader qr = new DataReader("D:/Skripsi/MavenShamirSS/questions.txt");
+                                    //DataReader qr = new DataReader("D:/Skripsi/MavenShamirSS/questions.txt");
+                                    DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
                                     qr.read();
                                     String[] res = qr.get();
                                     int count = Integer.parseInt(questions);

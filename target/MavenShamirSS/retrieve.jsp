@@ -33,7 +33,8 @@
                                 <label style="margin-top:7px;" class="col-sm-7 control-label">Security Questions</label>
                             </div>
                             <%
-                                DataReader dr = new DataReader("D:/Skripsi/MavenShamirSS/data_questions.txt");
+                                //DataReader dr = new DataReader("D:/Skripsi/MavenShamirSS/data_questions.txt");
+                                DataReader dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
                                 dr.read();
                                 String[] questions = dr.get();
                                 for(int i = 0; i < questions.length; i++) {

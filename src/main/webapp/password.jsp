@@ -36,11 +36,13 @@
                         <%
                             String[] answers = request.getParameterValues("answer");
 
-                            DataReader dr = new DataReader("D:/Skripsi/MavenShamirSS/data_questions.txt");
+                            //DataReader dr = new DataReader("D:/Skripsi/MavenShamirSS/data_questions.txt");
+                            DataReader dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
                             dr.read();
                             String[] questions = dr.get();
 
-                            dr = new DataReader("D:/Skripsi/MavenShamirSS/data_others.txt");
+                            //dr = new DataReader("D:/Skripsi/MavenShamirSS/data_others.txt");
+                            dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_others.txt");
                             dr.read();
                             int salt = Integer.parseInt(dr.get()[0]);
                             int k = Integer.parseInt(dr.get()[1]);
@@ -55,7 +57,8 @@
                                 sha.reset();
                             }
 
-                            dr = new DataReader("D:/Skripsi/MavenShamirSS/data_answers.txt");
+                            //dr = new DataReader("D:/Skripsi/MavenShamirSS/data_answers.txt");
+                            dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_answers.txt");
                             dr.read();
                             String[] encryptedAnswers = dr.get();
                             
@@ -114,6 +117,12 @@
                             for(int i = 0; i < passwordPart.size(); i++) {
                                 double[] temp = passwordPart.get(i);
                                 double[] solution = new double[k];
+                                double[][] tempEq = new double[k][k];
+                                for(int row = 0; row < equation.length; row++) {
+                                    for(int col = 0; col < equation[row].length; col++) {
+                                        tempEq[row][col] = equation[row][col];
+                                    }
+                                }
 
                                 idx = 0;
                                 for(int c = 0; c < temp.length; c++) {
@@ -123,22 +132,19 @@
                                     }
                                 }
 
-                                System.out.println(Arrays.toString(equation[0]));
-                                System.out.println(Arrays.toString(equation[1]));
-                                System.out.println(Arrays.toString(equation[2]));
-                                System.out.println(Arrays.toString(solution));
-
-                                eq = new EquationSolver(equation, solution);
+                                eq = new EquationSolver(tempEq, solution);
                                 secretParts[i] = (int)eq.solve()[0];
                             }
+
+                            String forgottenPassword = "";
+                            for(int i = 0; i < secretParts.length; i++) {
+                                char ch = (char)secretParts[i];
+                                forgottenPassword += ch + "";
+                            }
                         %>
-                        <%= Arrays.toString(decryptedAnswers) %>
-                        <br/>
-                        <%= Arrays.toString(secretParts) %>
-                        <br/>
                         <div class="form-group">
                             <label class="col-sm-4" style="margin-top:7px;">Your password is</label>
-                            <div class="col-sm-6"><input class="form-control" type="text" value="" disabled/></div>
+                            <div class="col-sm-6"><input class="form-control" type="text" value="<%= forgottenPassword %>" disabled/></div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4"><a href="retrieve.jsp" class="btn btn-danger">Return</a></div>
