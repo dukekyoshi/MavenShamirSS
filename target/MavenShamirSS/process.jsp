@@ -48,16 +48,10 @@
             Encryption e = new Encryption();
             String[] encrypted = new String[password.length()*share];
 
-            System.out.println("answers: " + answers.length);
-            System.out.println("password: " + password.length());
-            System.out.println("share: " + share);
-            System.out.println("encrypted length: " + encrypted.length);
-
             int secret = 0;
             int encIdx = 0;
             for(int i = 0; i < password.length(); i++) {
                 secret = (int)(password.charAt(i));
-                System.out.println("secret: " + secret);
                 SecretSharing ss = new SecretSharing(secret);
                 ss.split(share, k);
 

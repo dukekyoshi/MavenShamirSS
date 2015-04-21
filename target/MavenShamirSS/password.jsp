@@ -147,7 +147,10 @@
                             <div class="col-sm-6"><input class="form-control" type="text" value="<%= forgottenPassword %>" disabled/></div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-4"><a href="retrieve.jsp" class="btn btn-danger">Return</a></div>
+                            <div class="col-sm-4">
+                                <a href="index.jsp" class="btn btn-primary">Done</a>
+                                <a href="retrieve.jsp" class="btn btn-danger">Return</a>
+                            </div>
                         </div>
                     </div>
                 </div>

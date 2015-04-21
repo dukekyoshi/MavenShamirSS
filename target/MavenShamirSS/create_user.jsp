@@ -21,10 +21,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <%
-            String questions = request.getParameter("num-of-questions");
-            String minQ = request.getParameter("min-number");
-        %>
         <div class="container">
             <div class="login-box col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                 <div class="panel panel-info" style="margin-top:20px;">
@@ -32,38 +28,40 @@
                         <div class="panel-title">Create User</div>
                     </div>
                     <form method="POST" action="process.jsp">
-                        <input type="hidden" name="min-number" value="<%= minQ %>"/>
                         <div class="panel-body">
                             <div class="form-group">
                                 <label for="pswd" style="margin-top:7px;" class="col-sm-2 control-label">Password</label>
-                                <div class="col-sm-10"><input id="pswd" name="password" type="password" class="form-control"/></div>
+                                <label style="margin-top:7px;" class="col-sm-1">:</label>
+                                <div class="col-sm-9"><input id="pswd" name="password" type="password" class="form-control"/></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="min-number" style="margin-top:7px;" class="col-sm-6 control-label">Minimum Number of Correct Answers</label>
+                                <label style="margin-top:7px;" class="col-sm-1">:</label>
+                                <div class="col-sm-5"><input id="min-number" name="min-number" type="text" class="form-control"/></div>
                             </div>
                             <hr/>
                             <div class="form-group">
                                 <label style="margin-top:7px;" class="col-sm-7 control-label">Security Questions</label>
                             </div>
                             <%
-                                if(questions != null) {
-                                    //DataReader qr = new DataReader("D:/Skripsi/MavenShamirSS/questions.txt");
-                                    DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
-                                    qr.read();
-                                    String[] res = qr.get();
-                                    int count = Integer.parseInt(questions);
-                                    if(res.length < count) {
-                                        count = res.length;
-                                    }
-                                    for(int i = 0; i < count; i++) {
+                                String[] res = new String[1];
+                                //DataReader qr = new DataReader("D:/Skripsi/MavenShamirSS/questions.txt");
+                                DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
+                                qr.read();
+                                res = qr.get();
                             %>
-                                        <div class="form-group">
-                                            <label for="num" style="margin-top:7px;" class="col-sm-1 control-label"><%= (i+1) + "." %></label>
-                                            <label for="questions" style="margin-top:7px;" class="col-sm-7 control-label"><%= res[i] %></label>
-                                            <div class="col-sm-4"><input id="quest" name="answer" type="text" class="form-control"/></div>
-                                        </div>
-                            <%
-                                    }
-                                }
-                            %>
-                            <hr/>
+                            <div style="display:none;" id="counter">1</div>
+                            <div class="form-group" style="padding-left:15px !important;">
+                                <select class="form-control" id="selectQuestions" style="width:600px;display:inline;">
+                                    <%
+                                        for(int i = 0; i < res.length; i++) {
+                                    %>
+                                    <option value="<%= res[i] %>" id="<%= "option" + i%>"><%= res[i] %></option>
+                                    <% } %>
+                                </select>
+                                <input type="button" class="btn btn-primary" id="addQuestions" value="Add"/>
+                            </div>
+                            <hr class="submit-buttons-hr"/>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-info" value="Create User"/>
                                 <a class="btn btn-danger" href="choose.jsp">Cancel</a>
@@ -73,5 +71,8 @@
                 </div>
             </div>
         </div>
-    </body>
+        <script src="jquery-2.1.1.js" type="text/javascript"></script>
+	<script src="bootstrap.min.js" type="text/javascript"></script>
+        <script src="app.js" type="text/javascript"></script>
+    </body> 
 </html>

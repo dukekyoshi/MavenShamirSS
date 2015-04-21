@@ -18,7 +18,7 @@
             <div class="main-menu-links">
                 <a href="retrieve.jsp" class="btn btn-success">Retrieve Lost Password</a>
                 or
-                <a href="choose.jsp" class="btn btn-info">Create User</a>
+                <a href="create_user.jsp" class="btn btn-info">Create User</a>
             </div>
         </div>
     </body>
