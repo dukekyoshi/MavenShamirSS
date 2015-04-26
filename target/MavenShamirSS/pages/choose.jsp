@@ -15,20 +15,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Secret Sharing</title>
-        <link href="bootstrap.min.css" rel="stylesheet">
-        <link href="normalize.css" rel="stylesheet">
-        <link href="font-awesome.css" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/normalize.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <%
-            File folder = new File("D:/Skripsi/MavenShamirSS");
+            String path = getServletContext().getRealPath("cases");
+            File folder = new File(path);
             File[] list = folder.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    return (name.contains("case") && name.endsWith(".txt")) || name.equals("questions.txt");
+                    return (name.contains("case") && name.endsWith(".txt"));
                 }
             });
         %>
@@ -50,7 +51,7 @@
                             <hr/>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-info" value="Submit"/>
-                                <a class="btn btn-danger" href="index.jsp">Cancel</a>
+                                <a class="btn btn-danger" href="../index.jsp">Cancel</a>
                             </div>
                         </div>
                     </form>

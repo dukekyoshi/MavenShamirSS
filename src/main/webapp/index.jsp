@@ -6,19 +6,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Secret Sharing</title>
-        <link href="bootstrap.min.css" rel="stylesheet">
-        <link href="normalize.css" rel="stylesheet">
-        <link href="font-awesome.css" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/normalize.css" rel="stylesheet">
+        <link href="css/font-awesome.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <div class="container main-container">
             <div class="main-menu-links">
-                <a href="retrieve.jsp" class="btn btn-success">Retrieve Password</a>
+                <a href="pages/case_retrieve.jsp" class="btn btn-success">Retrieve Password</a>
                 or
-                <a href="choose.jsp" class="btn btn-info">Store Password</a>
+                <a href="pages/choose.jsp" class="btn btn-info">Store Password</a>
             </div>
         </div>
     </body>

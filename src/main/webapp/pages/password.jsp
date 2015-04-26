@@ -18,10 +18,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Secret Sharing</title>
-        <link href="bootstrap.min.css" rel="stylesheet">
-        <link href="normalize.css" rel="stylesheet">
-        <link href="font-awesome.css" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/normalize.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -35,13 +35,15 @@
                     <div class="panel-body">
                         <%
                             String[] answers = request.getParameterValues("answer");
+                            String caseNum = request.getParameter("case");
 
-                            DataReader dr = new DataReader("D:/Skripsi/MavenShamirSS/data_questions.txt");
+                            String path = getServletContext().getRealPath("data");
+                            DataReader dr = new DataReader(path + "\\data_questions_" + caseNum);
                             //DataReader dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
                             dr.read();
                             String[] questions = dr.get();
 
-                            dr = new DataReader("D:/Skripsi/MavenShamirSS/data_others.txt");
+                            dr = new DataReader(path + "\\data_others_" + caseNum);
                             //dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_others.txt");
                             dr.read();
                             int salt = Integer.parseInt(dr.get()[0]);
@@ -57,11 +59,11 @@
                                 sha.reset();
                             }
 
-                            dr = new DataReader("D:/Skripsi/MavenShamirSS/data_answers.txt");
+                            dr = new DataReader(path + "\\data_answers_" + caseNum);
                             //dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_answers.txt");
                             dr.read();
                             String[] encryptedAnswers = dr.get();
-                            
+
                             int[] decryptedAnswers = new int[encryptedAnswers.length];
                             int share = answers.length;
 
@@ -150,8 +152,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <a href="index.jsp" class="btn btn-primary">Done</a>
-                                <a href="retrieve.jsp" class="btn btn-danger">Return</a>
+                                <a href="../index.jsp" class="btn btn-primary">Done</a>
                             </div>
                         </div>
                     </div>

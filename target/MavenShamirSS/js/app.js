@@ -6,7 +6,7 @@ $(document).ready(function() {
             var element = "<div class='form-group'>" + "<label style='margin-top:7px;' class='col-sm-1'>" + num + "</label>"
                 + "<label style='margin-top:7px;' class='col-sm-7'>" + obj.text() + "</label>" +
                 "<div class='col-sm-4'><input id='quest' name='answer' type='text' class='form-control questions'/></div>"
-                + "</div>";
+                + "</div><input name='questions' type='hidden' value='" + obj.text() + "'/>";
             $(".submit-buttons-hr").before(element);
         }
         $("#selectQuestions option:selected").remove();

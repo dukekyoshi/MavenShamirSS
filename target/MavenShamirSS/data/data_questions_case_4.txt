@@ -1,0 +1,15 @@
+Apakah anda mempunyai binatang peliharaan?
+Apakah anda bermain alat musik?
+Apakah anda pernah tidak naik kelas?
+Apa nama belakang anda?
+Siapa nama ibu anda?
+Pada hari apa anda lahir?
+Pada tanggal berapa anda lahir?
+Pada bulan apa anda lahir?
+Berapa perbedaan umur anda dengan ayah anda?
+Berapa nomor rumah tempat anda tinggal?
+Pada jam berapa anda lahir?(jj:mm)
+Apa cita-cita anda dulu sewaktu kecil?
+Siapa nama anak paling tua dari nenek sisi ibu anda?
+Apa binatang peliharaan pertama anda?
+Siapa nama guru kelas 3 SD anda?

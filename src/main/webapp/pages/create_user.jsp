@@ -13,10 +13,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Secret Sharing</title>
-        <link href="bootstrap.min.css" rel="stylesheet">
-        <link href="normalize.css" rel="stylesheet">
-        <link href="font-awesome.css" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/normalize.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -30,9 +30,9 @@
                     <form method="POST" action="process.jsp" onsubmit="return check()">
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="pswd" style="margin-top:7px;" class="col-sm-2 control-label">Password</label>
+                                <label for="pswd" style="margin-top:7px;" class="col-sm-6 control-label">Password</label>
                                 <label style="margin-top:7px;" class="col-sm-1">:</label>
-                                <div class="col-sm-9"><input id="pswd" name="password" type="password" class="form-control" required="required"/></div>
+                                <div class="col-sm-5"><input id="pswd" name="password" type="password" class="form-control" required="required"/></div>
                             </div>
                             <div class="form-group">
                                 <label for="min-number" style="margin-top:7px;" class="col-sm-6 control-label">Minimum Number of Correct Answers</label>
@@ -44,13 +44,15 @@
                                 <label style="margin-top:7px;" class="col-sm-7 control-label">Security Questions</label>
                             </div>
                             <%
+                                String caseNum = request.getParameter("questionsPool").replace(".txt", "");
                                 String[] res = new String[1];
-                                String filename = "D:/Skripsi/MavenShamirSS/" + request.getParameter("questionsPool");
+                                String path = getServletContext().getRealPath("cases");
+                                String filename = path + "\\" + request.getParameter("questionsPool");
                                 DataReader qr = new DataReader(filename);
-                                //DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
                                 qr.read();
                                 res = qr.get();
                             %>
+                            <input type="hidden" value="<%= caseNum %>" name="case"/>
                             <div style="display:none;" id="counter">1</div>
                             <div class="form-group" style="padding-left:15px !important;">
                                 <select class="form-control" id="selectQuestions" style="width:600px;display:inline;">
@@ -72,8 +74,8 @@
                 </div>
             </div>
         </div>
-        <script src="jquery-2.1.1.js" type="text/javascript"></script>
-	<script src="bootstrap.min.js" type="text/javascript"></script>
-        <script src="app.js" type="text/javascript"></script>
+        <script src="../js/jquery-2.1.1.js" type="text/javascript"></script>
+	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../js/app.js" type="text/javascript"></script>
     </body> 
 </html>

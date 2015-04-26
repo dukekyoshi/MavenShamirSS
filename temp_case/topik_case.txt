@@ -1,0 +1,4 @@
+case 1: biner (ya dan tidak) dan personal yg mudah di research ato guess
+case 2: yg hasilnya angka2 dan pertanyaan yg tidak stabil selalu berubah (saat mengisi dan nanti saat menjawab bisa saja hasilnya berbeda)
+case 3: pertanyaan yg sifatnya personal (mostly bisa dijawab jika memiliki hubungan keluarga)
+case 4: campuran dari keseluruhan 1+2+3

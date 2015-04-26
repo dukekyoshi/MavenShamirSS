@@ -13,10 +13,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Secret Sharing</title>
-        <link href="bootstrap.min.css" rel="stylesheet">
-        <link href="normalize.css" rel="stylesheet">
-        <link href="font-awesome.css" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/normalize.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -33,24 +33,26 @@
                                 <label style="margin-top:7px;" class="col-sm-7 control-label">Security Questions</label>
                             </div>
                             <%
-                                DataReader dr = new DataReader("D:/Skripsi/MavenShamirSS/data_questions.txt");
-                                //DataReader dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
+                                String path = getServletContext().getRealPath("data");
+                                String caseNum = request.getParameter("questionsPool");
+                                DataReader dr = new DataReader(path + "\\data_questions_" + caseNum);
                                 dr.read();
                                 String[] questions = dr.get();
                                 for(int i = 0; i < questions.length; i++) {
                             %>
                                     <div class="form-group">
                                         <label for="num" style="margin-top:7px;" class="col-sm-1 control-label"><%= (i+1) + "." %></label>
-                                        <label for="questions" style="margin-top:7px;" class="col-sm-6 control-label"><%= questions[i] %></label>
-                                        <div class="col-sm-5"><input id="ans" name="answer" type="text" class="form-control"/></div>
+                                        <label for="questions" style="margin-top:7px;" class="col-sm-7 control-label"><%= questions[i] %></label>
+                                        <div class="col-sm-4"><input id="ans" name="answer" type="text" class="form-control"/></div>
                                     </div>
                             <%
                                 }
                             %>
                             <hr/>
+                            <input type="hidden" name="case" value="<%= caseNum %>"/>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-info" value="Submit"/>
-                                <a class="btn btn-danger" href="index.jsp">Cancel</a>
+                                <a class="btn btn-danger" href="case_retrieve.jsp">Cancel</a>
                             </div>
                         </div>
                     </form>

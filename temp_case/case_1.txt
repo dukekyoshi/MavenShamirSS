@@ -1,0 +1,10 @@
+Apa jenis kelamin anda?
+Apakah anda pernah ke luar negeri?
+Apakah anda mempunyai binatang peliharaan?
+Apakah anda bermain alat musik?
+Apakah anda pernah tidak naik kelas?
+Apakah anda pernah mengalami kecelakaan?
+Apakah anda menyukai kegiatan olahraga?
+Apa nama belakang anda?
+Siapa nama ibu anda?
+Siapa nama ayah anda?

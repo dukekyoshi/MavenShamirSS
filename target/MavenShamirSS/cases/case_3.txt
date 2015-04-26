@@ -1,0 +1,10 @@
+Pada jam berapa anda lahir?(jj:mm)
+Apa nama sekolah dasar tempat anda bersekolah?
+Siapa nama belakang sepupu paling tua dari keluarga sisi ibu anda?
+Siapa nama belakang sepupu paling tua dari keluarga sisi ayah anda?
+Apa cita-cita anda dulu sewaktu kecil?
+Siapa nama anak paling tua dari nenek sisi ibu anda?
+Apa binatang peliharaan pertama anda?
+Apa alat musik yang anda mainkan pertama kali?
+Dimana kerabat terdekat anda tinggal/berasal?
+Siapa nama guru kelas 3 SD anda?

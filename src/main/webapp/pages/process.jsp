@@ -24,12 +24,10 @@
             String password = request.getParameter("password");
             String minQ = request.getParameter("min-number");
             String[] answers = request.getParameterValues("answer");
-            
-            DataReader qr = new DataReader("D:/Skripsi/MavenShamirSS/questions.txt");
-            //DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
-            qr.read();
-            String[] questions = qr.get();
-            
+            String[] questions = request.getParameterValues("questions");
+            String caseNum = request.getParameter("case");
+            String path = getServletContext().getRealPath("data");
+
             int salt = (int)(Math.random()*50) + 10;
 
             String[] hashValue = new String[answers.length];
@@ -44,7 +42,7 @@
 
             int share = answers.length;
             int k = Integer.parseInt(minQ);
-            
+
             Encryption e = new Encryption();
             String[] encrypted = new String[password.length()*share];
 
@@ -57,7 +55,7 @@
 
                 int[] function = ss.getFunction();
                 int[] shares = ss.getFx();
-                
+
                 for(int j = 1; j < shares.length; j++) {
                     e.setMessage(shares[j]+"");
                     e.setKey(hashValue[j-1]);
@@ -74,7 +72,7 @@
             for(int i = 0; i < answers.length; i++) {
                 writeToFile += questions[i] + "\r\n";
             }
-            DataWriter dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_questions.txt");
+            DataWriter dw = new DataWriter(path + "\\data_questions_" + caseNum + ".txt");
             //DataWriter dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
             dw.write(writeToFile);
 
@@ -83,17 +81,17 @@
             for(int i = 0; i < encrypted.length; i++) {
                 writeToFile += encrypted[i] + "\r\n";
             }
-            dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_answers.txt");
+            dw = new DataWriter(path + "\\data_answers_" + caseNum + ".txt");
             //dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_answers.txt");
             dw.write(writeToFile);
 
             //save salt and min question
             writeToFile = salt + "\r\n" + k;
-            dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_others.txt");
+            dw = new DataWriter(path + "\\data_others_" + caseNum + ".txt");
             //dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_others.txt");
             dw.write(writeToFile);
 
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("../index.jsp");
         %>
     </body>
 </html>
