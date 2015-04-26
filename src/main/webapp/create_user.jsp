@@ -22,22 +22,22 @@
     </head>
     <body>
         <div class="container">
-            <div class="login-box col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <div class="login-box col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                 <div class="panel panel-info" style="margin-top:20px;">
                     <div class="panel-heading">
                         <div class="panel-title">Create User</div>
                     </div>
-                    <form method="POST" action="process.jsp">
+                    <form method="POST" action="process.jsp" onsubmit="return check()">
                         <div class="panel-body">
                             <div class="form-group">
                                 <label for="pswd" style="margin-top:7px;" class="col-sm-2 control-label">Password</label>
                                 <label style="margin-top:7px;" class="col-sm-1">:</label>
-                                <div class="col-sm-9"><input id="pswd" name="password" type="password" class="form-control"/></div>
+                                <div class="col-sm-9"><input id="pswd" name="password" type="password" class="form-control" required="required"/></div>
                             </div>
                             <div class="form-group">
                                 <label for="min-number" style="margin-top:7px;" class="col-sm-6 control-label">Minimum Number of Correct Answers</label>
                                 <label style="margin-top:7px;" class="col-sm-1">:</label>
-                                <div class="col-sm-5"><input id="min-number" name="min-number" type="text" class="form-control"/></div>
+                                <div class="col-sm-5"><input id="min-number" name="min-number" type="text" class="form-control k-value" required="required"/></div>
                             </div>
                             <hr/>
                             <div class="form-group">
@@ -45,8 +45,9 @@
                             </div>
                             <%
                                 String[] res = new String[1];
-                                //DataReader qr = new DataReader("D:/Skripsi/MavenShamirSS/questions.txt");
-                                DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
+                                String filename = "D:/Skripsi/MavenShamirSS/" + request.getParameter("questionsPool");
+                                DataReader qr = new DataReader(filename);
+                                //DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
                                 qr.read();
                                 res = qr.get();
                             %>

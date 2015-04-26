@@ -1,27 +1,27 @@
+Apa jenis kelamin anda?
+Apakah anda pernah ke luar negeri?
+Apakah anda mempunyai binatang peliharaan?
+Apa nama peliharaan anda?
+Siapa nama ibu anda?
+Siapa nama ayah anda?
+Pada tahun berapa ayah anda lahir?
+Dimana kota ayah/ibu anda tinggal?
+Apakah anda bermain alat musik?
+Apakah anda pernah tidak naik kelas?
 Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
-Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
-Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
-Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
-Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
-Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
-Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
-Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
-Pada tanggal berapa anda lahir?
-Siapa nama peliharaan anda?
-Apa nama SD tempat anda pertama kali bersekolah?
+Pada bulan apa anda lahir?
+Dimana anda tinggal?
+Siapa nama artis kesukaan anda?
+Apa film kesukaan anda?
+Apa hobi favorit anda?
+Berapa orang saudara anda?
+Berapa nomor rumah tempat anda tinggal?
+Pada tahun berapa anda lahir?
+Berapa perbedaan umur anda dengan ayah anda?
+Berapa perbedaan umur anda dengan ibu anda?
+Pada jam berapa anda lahir?(jj:mm)
+Apa nama sekolah dasar tempat anda bersekolah?
+Siapa nama belakang sepupu paling tua dari keluarga anda?
+Dimana tempat pertama anda bertemu kekasih pertama anda?
+Siapa anak paling tua nenek dari sisi ibu anda?
+Apa merek handphone anda?

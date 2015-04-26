@@ -1,0 +1,12 @@
+Pada tanggal berapa anda lahir?
+Pada bulan apa anda lahir?
+Dimana anda tinggal?
+Siapa nama artis kesukaan anda?
+Apa film kesukaan anda?
+Apa hobi favorit anda?
+Apa merek handphone anda?
+Berapa orang saudara anda?
+Berapa nomor rumah tempat anda tinggal?
+Pada tahun berapa anda lahir?
+Berapa perbedaan umur anda dengan ayah anda?
+Berapa perbedaan umur anda dengan ibu anda?

@@ -25,8 +25,8 @@
             String minQ = request.getParameter("min-number");
             String[] answers = request.getParameterValues("answer");
             
-            //DataReader qr = new DataReader("D:/Skripsi/MavenShamirSS/questions.txt");
-            DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
+            DataReader qr = new DataReader("D:/Skripsi/MavenShamirSS/questions.txt");
+            //DataReader qr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/questions.txt");
             qr.read();
             String[] questions = qr.get();
             
@@ -74,8 +74,8 @@
             for(int i = 0; i < answers.length; i++) {
                 writeToFile += questions[i] + "\r\n";
             }
-            //DataWriter dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_questions.txt");
-            DataWriter dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
+            DataWriter dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_questions.txt");
+            //DataWriter dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
             dw.write(writeToFile);
 
             //save answers
@@ -83,14 +83,14 @@
             for(int i = 0; i < encrypted.length; i++) {
                 writeToFile += encrypted[i] + "\r\n";
             }
-            //dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_answers.txt");
-            dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_answers.txt");
+            dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_answers.txt");
+            //dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_answers.txt");
             dw.write(writeToFile);
 
             //save salt and min question
             writeToFile = salt + "\r\n" + k;
-            //dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_others.txt");
-            dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_others.txt");
+            dw = new DataWriter("D:/Skripsi/MavenShamirSS/data_others.txt");
+            //dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_others.txt");
             dw.write(writeToFile);
 
             response.sendRedirect("index.jsp");

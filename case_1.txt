@@ -1,0 +1,10 @@
+Apa jenis kelamin anda?
+Apakah anda pernah ke luar negeri?
+Apakah anda mempunyai binatang peliharaan?
+Apa nama peliharaan anda?
+Siapa nama ibu anda?
+Siapa nama ayah anda?
+Pada tahun berapa ayah anda lahir?
+Dimana kota ayah/ibu anda tinggal?
+Apakah anda bermain alat musik?
+Apakah anda pernah tidak naik kelas?

@@ -4,6 +4,9 @@
     Author     : Samuel
 --%>
 
+<%@page import="java.io.FilenameFilter"%>
+<%@page import="java.io.FileFilter"%>
+<%@page import="java.io.File"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,23 +23,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+        <%
+            File folder = new File("D:/Skripsi/MavenShamirSS");
+            File[] list = folder.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return (name.contains("case") && name.endsWith(".txt")) || name.equals("questions.txt");
+                }
+            });
+        %>
         <div class="container">
-            <div class="login-box col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <div class="login-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                 <div class="panel panel-info" style="margin-top:20px;">
                     <div class="panel-heading">
-                        <div class="panel-title">Choose N and K</div>
+                        <div class="panel-title">Cases</div>
                     </div>
                     <form action="create_user.jsp" method="GET">
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label for="number" style="margin-top:7px;" class="col-sm-6 control-label">Number of Questions</label>
-                                <label style="margin-top:7px;" class="col-sm-1">:</label>
-                                <div class="col-sm-5"><input id="number" name="num-of-questions" type="text" class="form-control"/></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="min-number" style="margin-top:7px;" class="col-sm-6 control-label">Minimum Number of Correct Answers</label>
-                                <label style="margin-top:7px;" class="col-sm-1">:</label>
-                                <div class="col-sm-5"><input id="min-number" name="min-number" type="text" class="form-control"/></div>
+                            <div class="form-group" style="padding-left:45px !important;">
+                                <select class="form-control" name="questionsPool" style="width:400px;display:inline;">
+                                    <% for(int i = 0; i < list.length; i++) { %>
+                                    <option value="<%= list[i].getName() %>"><%= list[i].getName() %></option>
+                                    <% } %>
+                                </select>
                             </div>
                             <hr/>
                             <div class="form-group">

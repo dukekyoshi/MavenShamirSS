@@ -16,9 +16,9 @@
     <body>
         <div class="container main-container">
             <div class="main-menu-links">
-                <a href="retrieve.jsp" class="btn btn-success">Retrieve Lost Password</a>
+                <a href="retrieve.jsp" class="btn btn-success">Retrieve Password</a>
                 or
-                <a href="create_user.jsp" class="btn btn-info">Create User</a>
+                <a href="choose.jsp" class="btn btn-info">Store Password</a>
             </div>
         </div>
     </body>

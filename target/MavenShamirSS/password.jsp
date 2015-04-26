@@ -36,13 +36,13 @@
                         <%
                             String[] answers = request.getParameterValues("answer");
 
-                            //DataReader dr = new DataReader("D:/Skripsi/MavenShamirSS/data_questions.txt");
-                            DataReader dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
+                            DataReader dr = new DataReader("D:/Skripsi/MavenShamirSS/data_questions.txt");
+                            //DataReader dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
                             dr.read();
                             String[] questions = dr.get();
 
-                            //dr = new DataReader("D:/Skripsi/MavenShamirSS/data_others.txt");
-                            dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_others.txt");
+                            dr = new DataReader("D:/Skripsi/MavenShamirSS/data_others.txt");
+                            //dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_others.txt");
                             dr.read();
                             int salt = Integer.parseInt(dr.get()[0]);
                             int k = Integer.parseInt(dr.get()[1]);
@@ -57,8 +57,8 @@
                                 sha.reset();
                             }
 
-                            //dr = new DataReader("D:/Skripsi/MavenShamirSS/data_answers.txt");
-                            dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_answers.txt");
+                            dr = new DataReader("D:/Skripsi/MavenShamirSS/data_answers.txt");
+                            //dr = new DataReader("H:/Kuliah/Skripsi/MavenShamirSS/data_answers.txt");
                             dr.read();
                             String[] encryptedAnswers = dr.get();
                             
@@ -138,8 +138,10 @@
 
                             String forgottenPassword = "";
                             for(int i = 0; i < secretParts.length; i++) {
-                                char ch = (char)secretParts[i];
-                                forgottenPassword += ch + "";
+                                if(secretParts[i] != 0) {
+                                    char ch = (char)secretParts[i];
+                                    forgottenPassword += ch + "";
+                                }
                             }
                         %>
                         <div class="form-group">
