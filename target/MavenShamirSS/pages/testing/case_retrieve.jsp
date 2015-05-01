@@ -13,10 +13,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/normalize.css" rel="stylesheet">
-        <link href="../css/font-awesome.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/normalize.css" rel="stylesheet">
+        <link href="../../css/font-awesome.css" rel="stylesheet">
+        <link href="../../css/style.css" rel="stylesheet">
         <title>Secret Sharing</title>
     </head>
     <body>
@@ -48,7 +48,7 @@
                             <hr/>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-info" value="Submit"/>
-                                <a class="btn btn-danger" href="../index.jsp">Cancel</a>
+                                <a class="btn btn-danger" href="index.jsp">Cancel</a>
                             </div>
                         </div>
                     </form>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : process
-    Created on : Apr 15, 2015, 1:50:57 PM
-    Author     : Samuel
+    Created on : May 1, 2015, 8:42:30 PM
+    Author     : Sam
 --%>
 
 <%@page import="java.util.Arrays"%>
@@ -21,12 +21,16 @@
     </head>
     <body>
         <%
-            String password = request.getParameter("password");
-            String minQ = request.getParameter("min-number");
-            String[] answers = request.getParameterValues("answer");
+            String[] passwords = request.getParameterValues("password");
             String[] questions = request.getParameterValues("questions");
-            String caseNum = request.getParameter("case");
+            String[] answers = request.getParameterValues("answer");
             String path = getServletContext().getRealPath("data");
+
+            int n = questions.length;
+            int k = passwords.length;
+            if(k <= 3) {
+                k = 4;
+            }
 
             int salt = (int)(Math.random()*50) + 10;
 
@@ -40,55 +44,54 @@
                 sha.reset();
             }
 
-            int share = answers.length;
-            int k = Integer.parseInt(minQ);
-
+            DataWriter dw = null;
+            String writeToFile = "";
             Encryption e = new Encryption();
-            String[] encrypted = new String[password.length()*share];
+            for(int count = 0; count < passwords.length; count++) {
+                String password = passwords[count];
+                String[] encrypted = new String[password.length()*n];
+                
+                int secret = 0;
+                int encIdx = 0;
+                for(int i = 0; i < password.length(); i++) {
+                    secret = (int)(password.charAt(i));
+                    SecretSharing ss = new SecretSharing(secret);
+                    ss.split(n, k);
 
-            int secret = 0;
-            int encIdx = 0;
-            for(int i = 0; i < password.length(); i++) {
-                secret = (int)(password.charAt(i));
-                SecretSharing ss = new SecretSharing(secret);
-                ss.split(share, k);
+                    int[] function = ss.getFunction();
+                    int[] shares = ss.getFx();
 
-                int[] function = ss.getFunction();
-                int[] shares = ss.getFx();
-
-                for(int j = 1; j < shares.length; j++) {
-                    e.setMessage(shares[j]+"");
-                    e.setKey(hashValue[j-1]);
-                    e.initialize();
-                    e.encrypt();
-                    encrypted[encIdx] = e.getCipherText();
-                    encIdx++;
-                    e.reset();
+                    for(int j = 1; j < shares.length; j++) {
+                        e.setMessage(shares[j]+"");
+                        e.setKey(hashValue[j-1]);
+                        e.initialize();
+                        e.encrypt();
+                        encrypted[encIdx] = e.getCipherText();
+                        encIdx++;
+                        e.reset();
+                    }
                 }
+
+                //save answers
+                writeToFile = "";
+                for(int i = 0; i < encrypted.length; i++) {
+                    writeToFile += encrypted[i] + "\r\n";
+                }
+                dw = new DataWriter(path + "\\data_answers_" + count + ".txt");
+                dw.write(writeToFile);
             }
 
             //save questions
-            String writeToFile = "";
-            for(int i = 0; i < answers.length; i++) {
+            writeToFile = "";
+            for(int i = 0; i < questions.length; i++) {
                 writeToFile += questions[i] + "\r\n";
             }
-            DataWriter dw = new DataWriter(path + "\\data_questions_" + caseNum + ".txt");
-            //DataWriter dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_questions.txt");
-            dw.write(writeToFile);
-
-            //save answers
-            writeToFile = "";
-            for(int i = 0; i < encrypted.length; i++) {
-                writeToFile += encrypted[i] + "\r\n";
-            }
-            dw = new DataWriter(path + "\\data_answers_" + caseNum + ".txt");
-            //dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_answers.txt");
+            dw = new DataWriter(path + "\\data_questions.txt");
             dw.write(writeToFile);
 
             //save salt and min question
             writeToFile = salt + "\r\n" + k;
-            dw = new DataWriter(path + "\\data_others_" + caseNum + ".txt");
-            //dw = new DataWriter("H:/Kuliah/Skripsi/MavenShamirSS/data_others.txt");
+            dw = new DataWriter(path + "\\data_others.txt");
             dw.write(writeToFile);
 
             response.sendRedirect("../index.jsp");

@@ -13,6 +13,31 @@ $(document).ready(function() {
         num++;
         $("#counter").text(num);
     });
+
+    $("#add").click(function() {
+        var question = $("#question").val();
+        var num = +$("#counter").text();
+        if(question == "") {
+            alert("Empty");
+        } else {
+            var element = "<div class='form-group box" + num + "'>" + "<label style='margin-top:7px;' class='col-sm-1'>" + num + "</label>"
+                + "<label style='margin-top:7px;' class='col-sm-7'>" + question + "</label>" +
+                "<div class='col-sm-4'><input id='quest' name='answer' type='text' class='form-control questions'/></div>"
+                + "</div><input name='questions' type='hidden' value='" + question + "'/>";
+            $(".submit-buttons-hr").before(element);
+            num++;
+            $("#counter").text(num);
+        }
+    });
+
+    $("#addPassword").click(function() {
+        var element = "<div class='form-group'><label for='pswd'"
+            + "style='margin-top:7px;' class='col-sm-1 control-label'>"
+            + "Password</label><label style='margin-top:7px;' class='col-sm-1'>"
+            + ":</label><div class='col-sm-9'><input id='pswd' name='password' type='password'"
+            + "class='form-control' required='required'/></div></div>";
+        $("#addPassword").after(element);
+    });
 });
 
 function check() {

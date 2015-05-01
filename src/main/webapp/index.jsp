@@ -1,4 +1,10 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- 
+    Document   : index
+    Created on : May 1, 2015, 8:06:09 PM
+    Author     : Sam
+--%>
+
+<%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -16,9 +22,9 @@
     <body>
         <div class="container main-container">
             <div class="main-menu-links">
-                <a href="pages/case_retrieve.jsp" class="btn btn-success">Retrieve Password</a>
+                <a href="pages/retrieve.jsp" class="btn btn-success">Retrieve Password</a>
                 or
-                <a href="pages/choose.jsp" class="btn btn-info">Store Password</a>
+                <a href="pages/store.jsp" class="btn btn-info">Store Password</a>
             </div>
         </div>
     </body>

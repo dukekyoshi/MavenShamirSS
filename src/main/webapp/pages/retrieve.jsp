@@ -1,7 +1,7 @@
-<%-- 
-    Document   : retrieve
-    Created on : Apr 17, 2015, 11:00:01 AM
-    Author     : Samuel
+<%--
+    Document   : store
+    Created on : May 1, 2015, 8:08:05 PM
+    Author     : Sam
 --%>
 
 <%@page import="ReaderWriter.DataReader"%>
@@ -27,32 +27,31 @@
                     <div class="panel-heading">
                         <div class="panel-title">Retrieve Password</div>
                     </div>
-                    <form action="password.jsp" method="POST">
+                    <form action="retrieve_process.jsp" method="POST">
                         <div class="panel-body">
                             <div class="form-group">
                                 <label style="margin-top:7px;" class="col-sm-7 control-label">Security Questions</label>
                             </div>
                             <%
                                 String path = getServletContext().getRealPath("data");
-                                String caseNum = request.getParameter("questionsPool");
-                                DataReader dr = new DataReader(path + "\\data_questions_" + caseNum);
+                                DataReader dr = new DataReader(path + "\\data_questions.txt");
                                 dr.read();
                                 String[] questions = dr.get();
                                 for(int i = 0; i < questions.length; i++) {
                             %>
                                     <div class="form-group">
                                         <label for="num" style="margin-top:7px;" class="col-sm-1 control-label"><%= (i+1) + "." %></label>
-                                        <label for="questions" style="margin-top:7px;" class="col-sm-7 control-label"><%= questions[i] %></label>
+                                        <label for="answer" style="margin-top:7px;" class="col-sm-7 control-label"><%= questions[i] %></label>
                                         <div class="col-sm-4"><input id="ans" name="answer" type="text" class="form-control"/></div>
+                                        <input type="hidden" name="questions" value="<%= questions[i] %>"/>
                                     </div>
                             <%
                                 }
                             %>
                             <hr/>
-                            <input type="hidden" name="case" value="<%= caseNum %>"/>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-info" value="Submit"/>
-                                <a class="btn btn-danger" href="case_retrieve.jsp">Cancel</a>
+                                <a class="btn btn-danger" href="../index.jsp">Cancel</a>
                             </div>
                         </div>
                     </form>
