@@ -204,14 +204,14 @@ public class Encryption {
         return cipherText;
     }
 
-    public String[] round(String left, String right, String rndKey) {
+    private String[] round(String left, String right, String rndKey) {
         String Ln = right;
-        String Rn = xor(left, function(right, rndKey));
+        String Rn = xor(left, feistelCipher(right, rndKey));
         String[] arr = {Ln, Rn};
         return arr;
     }
 
-    public String function(String right, String rndKey) {
+    private String feistelCipher(String right, String rndKey) {
         String res = "";
 
         res = xor(rndKey, permute(right, exp));
@@ -231,12 +231,12 @@ public class Encryption {
         return res;
     }
 
-    public String initialPermutation(String msgblock) {
+    private String initialPermutation(String msgblock) {
         String res = permute(msgblock, IP);
         return res;
     }
 
-    public void createSubKey() {
+    private void createSubKey() {
         String K2 = permute(key, PC1);
         String left = K2.substring(0, K2.length()/2);
         String right = K2.substring(K2.length()/2, K2.length());
@@ -258,7 +258,7 @@ public class Encryption {
         }
     }
 
-    public String leftShift(String text, int bit) {
+    private String leftShift(String text, int bit) {
         String res = "";
         char[] ch = new char[text.length()];
         for(int i = 0; i < ch.length; i++) {
@@ -269,7 +269,7 @@ public class Encryption {
         return res;
     }
 
-    public void initialize() {
+    private void initialize() {
         String tempMessage = "";
         for(int i = 0; i < strMsg.length(); i++) {
             tempMessage += String.format("%8s", Integer.toBinaryString(strMsg.charAt(i))).replace(' ', '0');
@@ -297,7 +297,7 @@ public class Encryption {
         strKey = k;
     }
 
-    public String permute(String text, int[] permutationBox) {
+    private String permute(String text, int[] permutationBox) {
         String res = "";
         for(int i = 0; i < permutationBox.length; i++) {
             res += text.charAt(permutationBox[i]-1);
@@ -305,7 +305,7 @@ public class Encryption {
         return res;
     }
 
-    public String xor(String a, String b) {
+    private String xor(String a, String b) {
         String res = "";
         for(int i = 0; i < a.length(); i++) {
             int temp1 = a.charAt(i)-48;

@@ -11,17 +11,17 @@ public class DataReader {
      * ATTRIBUTES
      */
     private String filename;
-    private ArrayList<String> questions;
+    private ArrayList<String> content;
 
     public DataReader(String file) {
         filename = file;
-        questions = new ArrayList<String>();
+        content = new ArrayList<String>();
     }
 
     public String[] get() {
-        String[] str = new String[questions.size()];
+        String[] str = new String[content.size()];
         for(int i = 0; i < str.length; i++) {
-            str[i] = questions.get(i);
+            str[i] = content.get(i);
         }
         return str;
     }
@@ -32,7 +32,7 @@ public class DataReader {
             String sCurrentLine;
             br = new BufferedReader(new FileReader(filename));
             while ((sCurrentLine = br.readLine()) != null) {
-                questions.add(sCurrentLine);
+                content.add(sCurrentLine);
             }
         } catch (IOException e) {
         } finally {

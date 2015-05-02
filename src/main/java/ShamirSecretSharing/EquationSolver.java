@@ -29,7 +29,7 @@ public class EquationSolver {
                 }
             }
 
-            /*swap with pivot row  matrix A*/
+            /*swap with pivot row matrix A*/
             double[] temp = equationMatrix[max];
             equationMatrix[max] = equationMatrix[k];
             equationMatrix[k] = temp;
@@ -60,14 +60,5 @@ public class EquationSolver {
             solution[row] = (solutionMatrix[row] - sum) / equationMatrix[row][row];
         }
         return solution;
-    }
-
-    //f(x) = res
-    public double countFunction(double[] function, int x) {
-        double res = 0;
-        for(int i = 0; i < function.length; i++) {
-            res += function[i] * Math.pow(x,i);
-        }
-        return res;
     }
 }

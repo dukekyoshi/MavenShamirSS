@@ -139,7 +139,7 @@ public class Sha512 {
     //preDigest: previous digest or initial digest
     //prevDigest[0] -> A    prevDigest[1] -> B    prevDigest[2] -> C    prevDigest[3] -> D
     //prevDigest[4] -> E    prevDigest[5] -> F    prevDigest[6] -> G    prevDigest[7] -> H
-    public String[] round(String[] prevDigest, long word, int numOfRounds) {
+    private String[] round(String[] prevDigest, long word, int numOfRounds) {
         String[] result = new String[8];
         result[1] = pad(prevDigest[0]); //A -> B
         result[2] = pad(prevDigest[1]); //B -> C
