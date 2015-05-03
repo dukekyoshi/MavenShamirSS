@@ -27,10 +27,10 @@
                     <div class="panel-heading">
                         <div class="panel-title">Store Password</div>
                     </div>
-                    <form method="POST" action="process.jsp" onsubmit="return check()">
+                    <form method="POST" action="process.jsp" onsubmit="return count()">
                         <div class="panel-body">
                             <input type="button" style="margin-left: 12px;" class="btn btn-primary" id="addPassword" value="Add Password"/>
-                            <hr/>
+                            <hr class="pswd-hr"/>
                             <div class="form-group">
                                 <label style="margin-top:7px;" class="col-sm-7 control-label">Security Questions</label>
                             </div>

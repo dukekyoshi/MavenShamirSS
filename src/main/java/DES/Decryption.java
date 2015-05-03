@@ -288,7 +288,7 @@ public class Decryption {
         return res;
     }
 
-    private String binToStr(String bin) {
+    public String binToStr(String bin) {
         String text = "";
         String[] temp = bin.split("(?<=\\G.{8})");
         for(int i = 0; i < temp.length; i++) {

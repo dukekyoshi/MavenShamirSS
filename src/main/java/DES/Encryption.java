@@ -269,7 +269,7 @@ public class Encryption {
         return res;
     }
 
-    private void initialize() {
+    public void initialize() {
         String tempMessage = "";
         for(int i = 0; i < strMsg.length(); i++) {
             tempMessage += String.format("%8s", Integer.toBinaryString(strMsg.charAt(i))).replace(' ', '0');
