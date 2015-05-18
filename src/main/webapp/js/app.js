@@ -63,15 +63,15 @@ function removeDiv(e) {
 
 function count() {
     var password = $("input#pswd").length;
-    var length = $("input#quest").length;
+//    var length = $("input#quest").length;
     if(password <= 0) {
         alert("Minimal 1 password");
         return false;
     }
-    if(length < 5) {
-        alert("Banyak pertanyaan minimum 5");
-        return false;
-    }
+//    if(length < 5) {
+//        alert("Banyak pertanyaan minimum 5");
+//        return false;
+//    }
     return true;
 }
 

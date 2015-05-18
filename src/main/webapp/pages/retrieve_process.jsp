@@ -109,11 +109,17 @@
                         <%
                             for(int i = 0; i < passwords.length; i++) {
                         %>
-                            <div class="form-group">
-                                <label class="col-sm-4" style="margin-top:7px;">Your password is</label>
-                                <div class="col-sm-6"><input class="form-control" type="text" value="<%= passwords[i] %>" disabled/></div>
-                            </div>
-                            <% if(passwords[i] == "") break; %>
+                            <% if(passwords[i] == "") { %>
+                                <div class="form-group">
+                                    <div class="failed-notification">Password cannot be retrieved</div>
+                                </div>
+                                <% i = passwords.length; %>
+                            <% } else { %>
+                                <div class="form-group">
+                                    <label class="col-sm-4" style="margin-top:7px;">Your password is</label>
+                                    <div class="col-sm-6"><input class="form-control" type="text" value="<%= passwords[i] %>" disabled/></div>
+                                </div>
+                            <% } %>
                         <% } %>
                         <div class="form-group">
                             <div class="col-sm-4">

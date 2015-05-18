@@ -1,5 +1,5 @@
 Siapa nama anda?
-Dimana anda lahir?
+Dimana kota anda lahir?
 Apakah anda memiliki binatang peliharaan?
 Kapan anda lahir?
 Dimana anda berkuliah?

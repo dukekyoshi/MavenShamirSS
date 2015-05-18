@@ -27,7 +27,7 @@
             String path = getServletContext().getRealPath("data");
 
             int n = questions.length;
-            int k = passwords.length;
+            int k = passwords.length/2+1;
             if(k <= 3) {
                 k = 4;
             }

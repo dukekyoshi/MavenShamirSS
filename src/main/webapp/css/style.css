@@ -29,3 +29,13 @@ select.form-control {
 	width: 90px;
 	margin-bottom: 10px !important;
 }
+
+.failed-notification {
+    background-color: #D9534F;
+    color: #FFF;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

@@ -5,8 +5,8 @@ public class EquationSolver {
     /**
      * ATTRIBUTES
      */
-     double[][] equationMatrix;
-     double[] solutionMatrix;
+    private double[][] equationMatrix;
+    private double[] solutionMatrix;
 
     public EquationSolver(double[][] equation, double[] solution) {
         equationMatrix = equation;
