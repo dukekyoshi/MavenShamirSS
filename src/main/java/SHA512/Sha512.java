@@ -1,6 +1,5 @@
 package SHA512;
 
-
 import java.math.BigInteger;
 
 public class Sha512 {

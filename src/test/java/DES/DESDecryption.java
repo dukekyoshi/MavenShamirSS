@@ -2,7 +2,7 @@ package DES;
 
 import java.util.ArrayList;
 
-public class Encryption {
+public class DESDecryption {
 
     /**
      * ATTRIBUTES
@@ -136,23 +136,15 @@ public class Encryption {
         33, 1,  41, 9,  49, 17, 57, 25
     };
 
-    String strMsg;
-    String strKey;
-    String msg;
     String key;
     String[] roundKey;
     String cipher;
     ArrayList<int[][]> sBox;
-    String[] msgBlock;
 
-    public Encryption() {
-        strMsg = "";
-        strKey = "";
-        msg = "";
+    public DESDecryption() {
         key = "";
         roundKey = new String[16];
         cipher = "";
-        msgBlock = new String[1];
 
         sBox = new ArrayList<int[][]>();
         sBox.add(s1);
@@ -165,53 +157,55 @@ public class Encryption {
         sBox.add(s8);
     }
 
-    public void reset() {
-        strMsg = "";
-        strKey = "";
-        msg = "";
-        key = "";
-        roundKey = new String[16];
-        cipher = "";
-        msgBlock = new String[1];
+    public void setCipher(String c) {
+        String bin = "";
+        for(int i = 0; i < c.length(); i++) {
+            int hex = Integer.parseInt(c.charAt(i)+"", 16);
+            String temp = String.format("%4s", Integer.toBinaryString(hex)).replace(' ', '0');
+            bin += temp;
+        }
+        cipher = bin;
     }
 
-    public void encrypt() {
+    public void setKey(String k) {
+        for(int i = 0; i < k.length(); i++) {
+            key += String.format("%8s", Integer.toBinaryString(k.charAt(i))).replace(' ', '0');
+        }
+    }
+
+    public String decrypt() {
         createSubKey();
-        String tempCipher = "";
-        for(int block = 0; block < msgBlock.length; block++) {
-            String init = initialPermutation(msgBlock[block]);
+        String plainText = "";
+
+        String[] cipherBlock = cipher.split("(?<=\\G.{64})");
+
+        for(int block = 0; block < cipherBlock.length; block++) {
+            String init = initialPermutation(cipherBlock[block]);
             String L0 = init.substring(0,init.length()/2);
             String R0 = init.substring(init.length()/2, init.length());
 
-            //16 rounds
+            //16 rounds inverse
             String[] arr = {L0, R0};
-            for(int i = 0; i < 16; i++) {
+            for(int i = 15; i >= 0; i--) {
                 arr = round(arr[0], arr[1], roundKey[i]);
             }
 
-            tempCipher = arr[1] + arr[0];
-            tempCipher = permute(tempCipher, IP1);
-            cipher += tempCipher;
+            String tempPlainText = arr[1] + arr[0];
+            tempPlainText = permute(tempPlainText, IP1);
+            plainText += tempPlainText;
         }
+
+        return plainText;
     }
 
-    public String getCipherText() {
-        String cipherText = "";
-        String[] temp = cipher.split("(?<=\\G.{4})");
-        for(int i = 0; i < temp.length; i++) {
-            cipherText += Integer.toHexString(Integer.parseInt(temp[i], 2));
-        }
-        return cipherText;
-    }
-
-    private String[] round(String left, String right, String rndKey) {
+    public String[] round(String left, String right, String rndKey) {
         String Ln = right;
-        String Rn = xor(left, feistelCipher(right, rndKey));
+        String Rn = xor(left, function(right, rndKey));
         String[] arr = {Ln, Rn};
         return arr;
     }
 
-    private String feistelCipher(String right, String rndKey) {
+    public String function(String right, String rndKey) {
         String res = "";
 
         res = xor(rndKey, permute(right, exp));
@@ -231,12 +225,12 @@ public class Encryption {
         return res;
     }
 
-    private String initialPermutation(String msgblock) {
+    public String initialPermutation(String msgblock) {
         String res = permute(msgblock, IP);
         return res;
     }
 
-    private void createSubKey() {
+    public void createSubKey() {
         String K2 = permute(key, PC1);
         String left = K2.substring(0, K2.length()/2);
         String right = K2.substring(K2.length()/2, K2.length());
@@ -258,7 +252,7 @@ public class Encryption {
         }
     }
 
-    private String leftShift(String text, int bit) {
+    public String leftShift(String text, int bit) {
         String res = "";
         char[] ch = new char[text.length()];
         for(int i = 0; i < ch.length; i++) {
@@ -269,35 +263,7 @@ public class Encryption {
         return res;
     }
 
-    public void initialize() {
-        String tempMessage = "";
-        for(int i = 0; i < strMsg.length(); i++) {
-            tempMessage += String.format("%8s", Integer.toBinaryString(strMsg.charAt(i))).replace(' ', '0');
-        }
-
-        int padLength = (64 - (tempMessage.length() % 64)) / 8;
-        String padding = "";
-        for(int i = 0; i < padLength; i++) {
-            padding += String.format("%8s", Integer.toBinaryString(32)).replace(' ', '0');
-        }
-
-        msg = tempMessage + padding;
-
-        msgBlock = msg.split("(?<=\\G.{64})");
-
-        for(int i = 0; i < strKey.length(); i++) {
-            key += String.format("%8s", Integer.toBinaryString(strKey.charAt(i))).replace(' ', '0');
-        }
-    }
-    public void setMessage(String m) {
-        strMsg = m;
-    }
-
-    public void setKey(String k) {
-        strKey = k;
-    }
-
-    private String permute(String text, int[] permutationBox) {
+    public String permute(String text, int[] permutationBox) {
         String res = "";
         for(int i = 0; i < permutationBox.length; i++) {
             res += text.charAt(permutationBox[i]-1);
@@ -305,7 +271,7 @@ public class Encryption {
         return res;
     }
 
-    private String xor(String a, String b) {
+    public String xor(String a, String b) {
         String res = "";
         for(int i = 0; i < a.length(); i++) {
             int temp1 = a.charAt(i)-48;

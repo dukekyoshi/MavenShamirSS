@@ -2,7 +2,7 @@ package DES;
 
 import java.util.ArrayList;
 
-public class Decryption {
+public class DESDecryption {
 
     /**
      * ATTRIBUTES
@@ -141,7 +141,7 @@ public class Decryption {
     String cipher;
     ArrayList<int[][]> sBox;
 
-    public Decryption() {
+    public DESDecryption() {
         key = "";
         roundKey = new String[16];
         cipher = "";

@@ -8,7 +8,7 @@
 <%@page import="ReaderWriter.DataWriter"%>
 <%@page import="ReaderWriter.DataReader"%>
 <%@page import="SHA512.Sha512"%>
-<%@page import="DES.Encryption"%>
+<%@page import="DES.DESEncryption"%>
 <%@page import="ShamirSecretSharing.SecretSharing"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -46,7 +46,7 @@
 
             DataWriter dw = null;
             String writeToFile = "";
-            Encryption e = new Encryption();
+            DESEncryption e = new DESEncryption();
             for(int count = 0; count < passwords.length; count++) {
                 String password = passwords[count];
                 String[] encrypted = new String[password.length()*n];
