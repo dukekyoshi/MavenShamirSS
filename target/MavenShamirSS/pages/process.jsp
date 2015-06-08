@@ -4,11 +4,12 @@
     Author     : Sam
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="ReaderWriter.DataWriter"%>
 <%@page import="ReaderWriter.DataReader"%>
 <%@page import="SHA512.Sha512"%>
-<%@page import="DES.DESEncryption"%>
+<%@page import="DES.Encryption"%>
 <%@page import="ShamirSecretSharing.SecretSharing"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -43,24 +44,23 @@
                 hashValue[i] = sha.getDigest();
                 sha.reset();
             }
-
-            DataWriter dw = null;
+            
+            DataWriter dw = new DataWriter();
+            dw.deleteFiles(path);
             String writeToFile = "";
-            DESEncryption e = new DESEncryption();
+            Encryption e = new Encryption();
             for(int count = 0; count < passwords.length; count++) {
                 String password = passwords[count];
                 String[] encrypted = new String[password.length()*n];
-                
+
                 int secret = 0;
                 int encIdx = 0;
                 for(int i = 0; i < password.length(); i++) {
                     secret = (int)(password.charAt(i));
                     SecretSharing ss = new SecretSharing(secret);
                     ss.split(n, k);
-
                     int[] function = ss.getFunction();
                     int[] shares = ss.getFx();
-
                     for(int j = 1; j < shares.length; j++) {
                         e.setMessage(shares[j]+"");
                         e.setKey(hashValue[j-1]);
@@ -71,7 +71,6 @@
                         e.reset();
                     }
                 }
-
                 //save answers
                 writeToFile = "";
                 for(int i = 0; i < encrypted.length; i++) {

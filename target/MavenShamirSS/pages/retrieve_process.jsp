@@ -10,7 +10,7 @@
 <%@page import="java.io.FilenameFilter"%>
 <%@page import="java.io.File"%>
 <%@page import="java.util.Arrays"%>
-<%@page import="DES.DESDecryption"%>
+<%@page import="DES.Decryption"%>
 <%@page import="SHA512.Sha512"%>
 <%@page import="ReaderWriter.DataReader"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
@@ -76,7 +76,7 @@
                                 String[] encryptedAnswers = dr.get();
                                 decryptedAnswers = new int[encryptedAnswers.length];
 
-                                DESDecryption d = new DESDecryption();
+                                Decryption d = new Decryption();
                                 int count = 0;
                                 for(int j = 0; j < encryptedAnswers.length; j++) {
                                     d.setCipher(encryptedAnswers[j]);

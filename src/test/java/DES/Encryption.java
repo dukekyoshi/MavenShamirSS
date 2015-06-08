@@ -2,7 +2,7 @@ package DES;
 
 import java.util.ArrayList;
 
-public class DESEncryption {
+public class Encryption {
 
     /**
      * ATTRIBUTES
@@ -145,7 +145,7 @@ public class DESEncryption {
     ArrayList<int[][]> sBox;
     String[] msgBlock;
 
-    public DESEncryption() {
+    public Encryption() {
         strMsg = "";
         strKey = "";
         msg = "";

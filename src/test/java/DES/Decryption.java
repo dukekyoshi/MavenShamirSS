@@ -2,7 +2,7 @@ package DES;
 
 import java.util.ArrayList;
 
-public class DESDecryption {
+public class Decryption {
 
     /**
      * ATTRIBUTES
@@ -141,7 +141,7 @@ public class DESDecryption {
     String cipher;
     ArrayList<int[][]> sBox;
 
-    public DESDecryption() {
+    public Decryption() {
         key = "";
         roundKey = new String[16];
         cipher = "";
@@ -155,12 +155,6 @@ public class DESDecryption {
         sBox.add(s6);
         sBox.add(s7);
         sBox.add(s8);
-    }
-
-    public void reset() {
-        key = "";
-        roundKey = new String[16];
-        cipher = "";
     }
 
     public void setCipher(String c) {
@@ -204,14 +198,14 @@ public class DESDecryption {
         return plainText;
     }
 
-    private String[] round(String left, String right, String rndKey) {
+    public String[] round(String left, String right, String rndKey) {
         String Ln = right;
-        String Rn = xor(left, feistelCipher(right, rndKey));
+        String Rn = xor(left, function(right, rndKey));
         String[] arr = {Ln, Rn};
         return arr;
     }
 
-    private String feistelCipher(String right, String rndKey) {
+    public String function(String right, String rndKey) {
         String res = "";
 
         res = xor(rndKey, permute(right, exp));
@@ -231,12 +225,12 @@ public class DESDecryption {
         return res;
     }
 
-    private String initialPermutation(String msgblock) {
+    public String initialPermutation(String msgblock) {
         String res = permute(msgblock, IP);
         return res;
     }
 
-    private void createSubKey() {
+    public void createSubKey() {
         String K2 = permute(key, PC1);
         String left = K2.substring(0, K2.length()/2);
         String right = K2.substring(K2.length()/2, K2.length());
@@ -258,7 +252,7 @@ public class DESDecryption {
         }
     }
 
-    private String leftShift(String text, int bit) {
+    public String leftShift(String text, int bit) {
         String res = "";
         char[] ch = new char[text.length()];
         for(int i = 0; i < ch.length; i++) {
@@ -269,7 +263,7 @@ public class DESDecryption {
         return res;
     }
 
-    private String permute(String text, int[] permutationBox) {
+    public String permute(String text, int[] permutationBox) {
         String res = "";
         for(int i = 0; i < permutationBox.length; i++) {
             res += text.charAt(permutationBox[i]-1);
@@ -277,7 +271,7 @@ public class DESDecryption {
         return res;
     }
 
-    private String xor(String a, String b) {
+    public String xor(String a, String b) {
         String res = "";
         for(int i = 0; i < a.length(); i++) {
             int temp1 = a.charAt(i)-48;
@@ -286,14 +280,5 @@ public class DESDecryption {
             res += xor;
         }
         return res;
-    }
-
-    public String binToStr(String bin) {
-        String text = "";
-        String[] temp = bin.split("(?<=\\G.{8})");
-        for(int i = 0; i < temp.length; i++) {
-            text += (char)Integer.parseInt(temp[i], 2);
-        }
-        return text;
     }
 }
