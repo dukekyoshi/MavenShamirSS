@@ -34,7 +34,8 @@ public class SecretSharing {
     /**
      * OTHERS
      */
-    public void split(int share, int k) {
+    public void split(int share) {
+        int k = generateK(share);
         function = new int[k];
         function[0] = secret;
         for(int i = 1; i < function.length; i++) {
@@ -47,6 +48,11 @@ public class SecretSharing {
         for(int i = 0; i <= share; i++) {
             fx[i] = fcount.countFunction(i);
         }
+    }
+
+    private int generateK(int n) {
+        int k = n/2 + 1;
+        return k;
     }
 
     public String reconstruct(int n, int k, ArrayList<double[]> parts) {
@@ -93,10 +99,12 @@ public class SecretSharing {
 
         String forgottenPassword = "";
         for(int i = 0; i < finalPart.length; i++) {
-            if(finalPart[i] != 0) {
-                char ch = (char)finalPart[i];
-                forgottenPassword += ch + "";
-            }
+//            if(finalPart[i] != 0) {
+//                char ch = (char)finalPart[i];
+//                forgottenPassword += ch + "";
+//            }
+            char ch = (char)finalPart[i];
+            forgottenPassword += ch + "";
         }
         return forgottenPassword;
     }

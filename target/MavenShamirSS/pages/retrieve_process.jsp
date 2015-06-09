@@ -52,7 +52,7 @@
 
                             DataReader dr = new DataReader(path + "\\data_others.txt");
                             dr.read();
-                            int salt = Integer.parseInt(dr.get()[0]);
+                            String salt = dr.get()[0];
                             int k = Integer.parseInt(dr.get()[1]);
 
                             String[] hashValue = new String[answers.length];
@@ -109,17 +109,10 @@
                         <%
                             for(int i = 0; i < passwords.length; i++) {
                         %>
-                            <% if(passwords[i] == "") { %>
-                                <div class="form-group">
-                                    <div class="failed-notification">Password cannot be retrieved</div>
-                                </div>
-                                <% i = passwords.length; %>
-                            <% } else { %>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:7px;">Your password is</label>
-                                    <div class="col-sm-6"><input class="form-control" type="text" value="<%= passwords[i] %>" disabled/></div>
-                                </div>
-                            <% } %>
+                            <div class="form-group">
+                                <label class="col-sm-4" style="margin-top:7px;">Your password is</label>
+                                <div class="col-sm-6"><input class="form-control" type="text" value="<%= passwords[i] %>" disabled/></div>
+                            </div>
                         <% } %>
                         <div class="form-group">
                             <div class="col-sm-4">

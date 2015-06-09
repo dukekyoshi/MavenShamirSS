@@ -4,6 +4,7 @@
     Author     : Sam
 --%>
 
+<%@page import="java.security.SecureRandom"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="ReaderWriter.DataWriter"%>
@@ -33,10 +34,9 @@
                 k = 4;
             }
 
-            int salt = (int)(Math.random()*50) + 10;
-
             String[] hashValue = new String[answers.length];
             Sha512 sha = new Sha512();
+            String salt = sha.generateSalt();
             for(int i = 0; i < hashValue.length; i++) {
                 String message = questions[i] + answers[i] + salt;
                 sha.setMessage(message);

@@ -1,6 +1,7 @@
 package SHA512;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 
 public class Sha512 {
 
@@ -253,5 +254,15 @@ public class Sha512 {
         }
         res += input;
         return res;
+    }
+
+    public String generateSalt() {
+        final SecureRandom sr = new SecureRandom();
+        String salt = "";
+        for(int i = 0; i < 4; i++) {
+            int temp = sr.nextInt((126 - 33) + 1) + 33;
+            salt += (char)temp + "";
+        }
+        return salt;
     }
 }
