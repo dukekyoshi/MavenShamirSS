@@ -52,6 +52,9 @@ public class SecretSharing {
 
     private int generateK(int n) {
         int k = n/2 + 1;
+        if(k > n) {
+            k = n;
+        }
         return k;
     }
 
